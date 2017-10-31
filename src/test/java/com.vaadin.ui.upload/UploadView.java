@@ -53,7 +53,6 @@ public class UploadView extends DemoView {
     }
 
     private void createSimpleUpload() {
-        Div message = new Div();
         // begin-source-example
         // source-example-heading: Single file upload.
         MemoryBuffer buffer = new MemoryBuffer();
@@ -68,12 +67,10 @@ public class UploadView extends DemoView {
         // end-source-example
         upload.setMaxFileSize(500 * 1024);
 
-        addCard("Simple in memory receiver for single file upload", upload,
-                message);
+        addCard("Simple in memory receiver for single file upload", upload);
     }
 
     private void createSimpleMultiFileUpload() {
-        Div message = new Div();
         // begin-source-example
         // source-example-heading: Multi file upload.
         MultiFileMemoryBuffer buffer = new MultiFileMemoryBuffer();
@@ -91,12 +88,10 @@ public class UploadView extends DemoView {
         // end-source-example
         upload.setMaxFileSize(200 * 1024);
 
-        addCard("Simple in memory receiver for multi file upload", upload,
-                message);
+        addCard("Simple in memory receiver for multi file upload", upload);
     }
 
     private void createFilteredMultiFileUpload() {
-        Div message = new Div();
         // begin-source-example
         // source-example-heading: Multi file upload.
         MultiFileMemoryBuffer buffer = new MultiFileMemoryBuffer();
@@ -113,11 +108,10 @@ public class UploadView extends DemoView {
         // end-source-example
         upload.setMaxFileSize(200 * 1024);
 
-        addCard("Image file filter upload", upload, message);
+        addCard("Image file filter upload", upload);
     }
 
     private void createNonImmediateUpload() {
-        Div message = new Div();
         // begin-source-example
         // source-example-heading: Multi file upload.
         MultiFileMemoryBuffer buffer = new MultiFileMemoryBuffer();
@@ -134,11 +128,10 @@ public class UploadView extends DemoView {
         // end-source-example
         upload.setMaxFileSize(200 * 1024);
 
-        addCard("Manual upload demo", upload, message);
+        addCard("Manual upload demo", upload);
     }
 
     private void changeDefaultComponents() {
-        Div message = new Div();
         // begin-source-example
         // source-example-heading: Multi file upload.
         MultiFileMemoryBuffer buffer = new MultiFileMemoryBuffer();
@@ -166,11 +159,10 @@ public class UploadView extends DemoView {
         // end-source-example
         upload.setMaxFileSize(200 * 1024);
 
-        addCard("Custom components upload demo", upload, message);
+        addCard("Custom components upload demo", upload);
     }
 
     private void i18nSampleUpload() {
-        Div message = new Div();
         // begin-source-example
         // source-example-heading: Single file upload.
         MemoryBuffer buffer = new MemoryBuffer();
@@ -216,7 +208,7 @@ public class UploadView extends DemoView {
         // end-source-example
         upload.setMaxFileSize(200 * 1024);
 
-        addCard("i18n translations example", upload, message);
+        addCard("i18n translations example", upload);
     }
 
     private Component createComponent(String mimeType, String fileName,
