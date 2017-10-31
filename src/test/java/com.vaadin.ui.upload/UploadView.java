@@ -54,7 +54,7 @@ public class UploadView extends DemoView {
 
     private void createSimpleUpload() {
         // begin-source-example
-        // source-example-heading: Single file upload.
+        // source-example-heading: Simple in memory receiver for single file upload
         MemoryBuffer buffer = new MemoryBuffer();
         Upload upload = new Upload(buffer);
 
@@ -72,7 +72,7 @@ public class UploadView extends DemoView {
 
     private void createSimpleMultiFileUpload() {
         // begin-source-example
-        // source-example-heading: Multi file upload.
+        // source-example-heading: Simple in memory receiver for multi file upload
         MultiFileMemoryBuffer buffer = new MultiFileMemoryBuffer();
         Upload upload = new Upload(buffer);
 
@@ -93,7 +93,7 @@ public class UploadView extends DemoView {
 
     private void createFilteredMultiFileUpload() {
         // begin-source-example
-        // source-example-heading: Multi file upload.
+        // source-example-heading: Filtered multi file upload for images
         MultiFileMemoryBuffer buffer = new MultiFileMemoryBuffer();
         Upload upload = new Upload(buffer);
         upload.setAccept("image/jpeg,image/png,image/gif");
@@ -108,12 +108,12 @@ public class UploadView extends DemoView {
         // end-source-example
         upload.setMaxFileSize(200 * 1024);
 
-        addCard("Image file filter upload", upload);
+        addCard("Filtered multi file upload for images", upload);
     }
 
     private void createNonImmediateUpload() {
         // begin-source-example
-        // source-example-heading: Multi file upload.
+        // source-example-heading: Non immediate upload
         MultiFileMemoryBuffer buffer = new MultiFileMemoryBuffer();
         Upload upload = new Upload(buffer);
         upload.setNoAuto(true);
@@ -128,12 +128,12 @@ public class UploadView extends DemoView {
         // end-source-example
         upload.setMaxFileSize(200 * 1024);
 
-        addCard("Manual upload demo", upload);
+        addCard("Non immediate upload", upload);
     }
 
     private void changeDefaultComponents() {
         // begin-source-example
-        // source-example-heading: Multi file upload.
+        // source-example-heading: Custom components upload demo
         MultiFileMemoryBuffer buffer = new MultiFileMemoryBuffer();
         Upload upload = new Upload(buffer);
 
@@ -164,7 +164,7 @@ public class UploadView extends DemoView {
 
     private void i18nSampleUpload() {
         // begin-source-example
-        // source-example-heading: Single file upload.
+        // source-example-heading: i18n translations example
         MemoryBuffer buffer = new MemoryBuffer();
         Upload upload = new Upload(buffer);
 
