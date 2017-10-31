@@ -1,4 +1,4 @@
-# vaadin-upload-flow
+# Upload component for Vaadin Flow
 
 This project is the Component wrapper implementation of [vaadin-upload](https://github.com/vaadin/vaadin-upload) element
 for use from the server side with [Vaadin Flow](https://github.com/vaadin/flow).
