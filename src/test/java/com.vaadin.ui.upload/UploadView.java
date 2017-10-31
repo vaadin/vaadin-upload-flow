@@ -35,7 +35,7 @@ import com.vaadin.ui.upload.receivers.MultiFileMemoryBuffer;
  *
  * @author Vaadin Ltd
  */
-@Route("upload")
+@Route("")
 public class UploadView extends DemoView {
 
     public static void main(String... args) throws Exception {
