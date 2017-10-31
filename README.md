@@ -10,10 +10,6 @@ Run from the command line:
 
 Then navigate to `http://localhost:9998`
 
-## Running integration tests
-- Start the component demo server
-- execute `mvn verify`
-
 ## Using the component in a Flow application
 To use the component in an application using maven, 
 add the following dependency to your `pom.xml`:
@@ -24,6 +20,7 @@ add the following dependency to your `pom.xml`:
     <version>0.0.1-SNAPSHOT</version>
 </dependency>
 ```
+Right now the usage requires the component to be locally built and installed through `mvn install`
 
 ## Flow documentation
 Documentation for flow can be found in [Flow documentation](https://github.com/vaadin/flow/blob/master/flow-documentation/Overview.asciidoc).
