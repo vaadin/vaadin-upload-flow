@@ -27,6 +27,7 @@ import com.vaadin.server.NoOutputStreamException;
 import com.vaadin.server.StreamReceiver;
 import com.vaadin.server.StreamVariable;
 import com.vaadin.shared.Registration;
+import com.vaadin.ui.common.HasSize;
 import com.vaadin.ui.event.ComponentEventListener;
 import com.vaadin.ui.upload.events.FailedEvent;
 import com.vaadin.ui.upload.events.FinishedEvent;
@@ -46,7 +47,7 @@ import elemental.json.JsonObject;
  *
  * @author Vaadin Ltd
  */
-public class Upload extends GeneratedVaadinUpload<Upload> {
+public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
 
     private StreamVariable streamVariable;
     private boolean interrupted = false;
@@ -67,10 +68,8 @@ public class Upload extends GeneratedVaadinUpload<Upload> {
      */
     public Upload() {
         // Get a server round trip for upload error and success.
-        addUploadErrorListener(event -> {
-        });
-        addUploadSuccessListener(event -> {
-        });
+        addUploadErrorListener(event -> {});
+        addUploadSuccessListener(event -> {});
 
         // If client aborts upload mark upload as interrupted on server also
         addUploadAbortListener(event -> interruptUpload());
