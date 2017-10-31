@@ -1,6 +1,6 @@
 # Upload component for Vaadin Flow
 
-This project is the Component wrapper implementation of [vaadin-upload](https://github.com/vaadin/vaadin-upload) element
+This project is the Component wrapper implementation of [`<vaadin-upload>`](https://github.com/vaadin/vaadin-upload) element
 for use from the server side with [Vaadin Flow](https://github.com/vaadin/flow).
 
 ## Running the component demo
@@ -17,7 +17,7 @@ add the following dependency to your `pom.xml`:
 <dependency>
     <groupId>com.vaadin</groupId>
     <artifactId>vaadin-upload-flow</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${component.version}</version>
 </dependency>
 ```
 Right now the usage requires the component to be locally built and installed through `mvn install`
