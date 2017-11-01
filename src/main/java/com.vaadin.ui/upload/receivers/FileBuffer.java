@@ -31,7 +31,7 @@ import com.vaadin.ui.upload.Receiver;
  */
 public class FileBuffer extends AbstractFileBuffer implements Receiver {
 
-    public FileData file;
+    private FileData file;
 
     @Override
     public OutputStream receiveUpload(String fileName, String MIMEType) {

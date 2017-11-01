@@ -30,7 +30,7 @@ import com.vaadin.ui.upload.MultiFileReceiver;
  */
 public class MultiFileMemoryBuffer implements MultiFileReceiver {
 
-    public Map<String, FileData> files = new HashMap<>();
+    private Map<String, FileData> files = new HashMap<>();
 
     @Override
     public OutputStream receiveUpload(String fileName, String MIMEType) {

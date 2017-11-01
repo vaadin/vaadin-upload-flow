@@ -26,7 +26,7 @@ import java.util.logging.Logger;
  */
 public abstract class AbstractFileBuffer {
 
-    FileFactory factory;
+    private FileFactory factory;
 
     /**
      * Constructor for creating a file buffer with the default file factory.

@@ -19,7 +19,6 @@ import java.io.OutputStream;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Objects;
-import java.util.Optional;
 
 import com.vaadin.flow.dom.Element;
 import com.vaadin.server.NoInputStreamException;
@@ -68,8 +67,10 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
      */
     public Upload() {
         // Get a server round trip for upload error and success.
-        addUploadErrorListener(event -> {});
-        addUploadSuccessListener(event -> {});
+        addUploadErrorListener(event -> {
+        });
+        addUploadSuccessListener(event -> {
+        });
 
         // If client aborts upload mark upload as interrupted on server also
         addUploadAbortListener(event -> interruptUpload());
@@ -89,78 +90,11 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
         this();
 
         setReceiver(receiver);
-        addUploadSuccessListener(event -> System.out.println("Success"));
     }
 
     private StreamVariable getStreamVariable() {
         if (streamVariable == null) {
-            streamVariable = new com.vaadin.server.StreamVariable() {
-                private Deque<StreamingStartEvent> lastStartedEvent = new ArrayDeque<>();
-
-                @Override
-                public boolean listenProgress() {
-                    return getEventBus().hasListener(ProgressUpdateEvent.class);
-                }
-
-                @Override
-                public void onProgress(StreamingProgressEvent event) {
-                    fireUpdateProgress(event.getBytesReceived(),
-                            event.getContentLength());
-                }
-
-                @Override
-                public boolean isInterrupted() {
-                    return interrupted;
-                }
-
-                @Override
-                public OutputStream getOutputStream() {
-                    if (getReceiver() == null) {
-                        throw new IllegalStateException(
-                                "Upload cannot be performed without a receiver set");
-                    }
-                    StreamingStartEvent event = lastStartedEvent.pop();
-                    OutputStream receiveUpload = getReceiver()
-                            .receiveUpload(event.getFileName(),
-                                    event.getMimeType());
-                    return receiveUpload;
-                }
-
-                @Override
-                public void streamingStarted(StreamingStartEvent event) {
-                    startUpload();
-                    fireStarted(event.getFileName(), event.getMimeType(),
-                            event.getContentLength());
-                    lastStartedEvent.addLast(event);
-                }
-
-                @Override
-                public void streamingFinished(StreamingEndEvent event) {
-                    fireUploadSuccess(event.getFileName(), event.getMimeType(),
-                            event.getContentLength());
-                    endUpload();
-                }
-
-                @Override
-                public void streamingFailed(StreamingErrorEvent event) {
-                    try {
-                        Exception exception = event.getException();
-                        if (exception instanceof NoInputStreamException) {
-                            fireNoInputStream(event.getFileName(),
-                                    event.getMimeType(), 0);
-                        } else if (exception instanceof NoOutputStreamException) {
-                            fireNoOutputStream(event.getFileName(),
-                                    event.getMimeType(), 0);
-                        } else {
-                            fireUploadInterrupted(event.getFileName(),
-                                    event.getMimeType(),
-                                    event.getBytesReceived(), exception);
-                        }
-                    } finally {
-                        endUpload();
-                    }
-                }
-            };
+            streamVariable = new DefaultStreamVariable(this);
         }
         return streamVariable;
     }
@@ -206,7 +140,14 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
 
     private void fireStarted(String filename, String MIMEType,
             long contentLength) {
-        fireEvent(new StartedEvent(this, filename, MIMEType, contentLength));
+        try
+
+        {
+            fireEvent(
+                    new StartedEvent(this, filename, MIMEType, contentLength));
+        } catch (Exception e) {
+
+        }
     }
 
     private void fireUploadInterrupted(String filename, String MIMEType,
@@ -229,14 +170,7 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
         fireEvent(new FailedEvent(this, filename, MIMEType, length, e));
     }
 
-    /**
-     * Emits the upload success event.
-     *
-     * @param filename
-     * @param MIMEType
-     * @param length
-     */
-    protected void fireUploadSuccess(String filename, String MIMEType,
+    private void fireUploadSuccess(String filename, String MIMEType,
             long length) {
         fireEvent(new SucceededEvent(this, filename, MIMEType, length));
     }
@@ -355,9 +289,11 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
         Element element = getElement();
         for (String key : json.keys()) {
             if (json.get(key) instanceof JsonNull) {
-                continue;
+                element.removeAttribute(I18N_PROPERTY + "." + key);
+            } else {
+                element.setPropertyJson(I18N_PROPERTY + "." + key,
+                        json.get(key));
             }
-            element.setPropertyJson(I18N_PROPERTY + "." + key, json.get(key));
         }
         return get();
     }
@@ -414,8 +350,9 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
         UploadI18N.Uploading.Error uploadingError = new UploadI18N.Uploading.Error();
         uploadingError.setServerUnavailable(
                 getStringObject(uploadingBase, "error", "serverUnavailable"));
-        uploadingError.setUnexpectedServerError(getStringObject(uploadingBase,
-                "error", "unexpectedServerError"));
+        uploadingError.setUnexpectedServerError(
+                getStringObject(uploadingBase, "error",
+                        "unexpectedServerError"));
         uploadingError.setForbidden(
                 getStringObject(uploadingBase, "error", "forbidden"));
 
@@ -433,8 +370,8 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
         String result = null;
         JsonObject json = (JsonObject) getElement()
                 .getPropertyRaw(propertyName);
-        if (json != null && json.hasKey(subName)
-                && !(json.get(subName) instanceof JsonNull)) {
+        if (json != null && json.hasKey(subName) && !(json
+                .get(subName) instanceof JsonNull)) {
             result = json.getString(subName);
         }
         return result;
@@ -445,14 +382,94 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
         String result = null;
         JsonObject json = (JsonObject) getElement()
                 .getPropertyRaw(propertyName);
-        if (json != null && json.hasKey(object)
-                && !(json.get(object) instanceof JsonNull)) {
+        if (json != null && json.hasKey(object) && !(json
+                .get(object) instanceof JsonNull)) {
             json = json.getObject(object);
-            if (json != null && json.hasKey(subName)
-                    && !(json.get(subName) instanceof JsonNull)) {
+            if (json != null && json.hasKey(subName) && !(json
+                    .get(subName) instanceof JsonNull)) {
                 result = json.getString(subName);
             }
         }
         return result;
+    }
+
+    private static class DefaultStreamVariable implements StreamVariable {
+
+        private Deque<StreamVariable.StreamingStartEvent> lastStartedEvent = new ArrayDeque<>();
+
+        private final Upload upload;
+
+        public DefaultStreamVariable(Upload upload) {
+            this.upload = upload;
+        }
+
+        @Override
+        public boolean listenProgress() {
+            return upload.getEventBus().hasListener(ProgressUpdateEvent.class);
+        }
+
+        @Override
+        public void onProgress(StreamVariable.StreamingProgressEvent event) {
+            upload.fireUpdateProgress(event.getBytesReceived(),
+                    event.getContentLength());
+        }
+
+        @Override
+        public boolean isInterrupted() {
+            return upload.interrupted;
+        }
+
+        @Override
+        public OutputStream getOutputStream() {
+            if (upload.getReceiver() == null) {
+                throw new IllegalStateException(
+                        "Upload cannot be performed without a receiver set");
+            }
+            StreamVariable.StreamingStartEvent event = lastStartedEvent.pop();
+            OutputStream receiveUpload = upload.getReceiver()
+                    .receiveUpload(event.getFileName(), event.getMimeType());
+            return receiveUpload;
+        }
+
+        @Override
+        public void streamingStarted(StreamVariable.StreamingStartEvent event) {
+            upload.startUpload();
+            try {
+                upload.fireStarted(event.getFileName(), event.getMimeType(),
+                        event.getContentLength());
+            } finally {
+                lastStartedEvent.addLast(event);
+            }
+        }
+
+        @Override
+        public void streamingFinished(StreamVariable.StreamingEndEvent event) {
+            try {
+                upload.fireUploadSuccess(event.getFileName(),
+                        event.getMimeType(), event.getContentLength());
+            } finally {
+                upload.endUpload();
+            }
+        }
+
+        @Override
+        public void streamingFailed(StreamVariable.StreamingErrorEvent event) {
+            try {
+                Exception exception = event.getException();
+                if (exception instanceof NoInputStreamException) {
+                    upload.fireNoInputStream(event.getFileName(),
+                            event.getMimeType(), 0);
+                } else if (exception instanceof NoOutputStreamException) {
+                    upload.fireNoOutputStream(event.getFileName(),
+                            event.getMimeType(), 0);
+                } else {
+                    upload.fireUploadInterrupted(event.getFileName(),
+                            event.getMimeType(), event.getBytesReceived(),
+                            exception);
+                }
+            } finally {
+                upload.endUpload();
+            }
+        }
     }
 }
