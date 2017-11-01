@@ -140,14 +140,7 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
 
     private void fireStarted(String filename, String MIMEType,
             long contentLength) {
-        try
-
-        {
-            fireEvent(
-                    new StartedEvent(this, filename, MIMEType, contentLength));
-        } catch (Exception e) {
-
-        }
+        fireEvent(new StartedEvent(this, filename, MIMEType, contentLength));
     }
 
     private void fireUploadInterrupted(String filename, String MIMEType,
@@ -288,12 +281,7 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
         JsonObject json = (JsonObject) JsonSerializer.toJson(i18n);
         Element element = getElement();
         for (String key : json.keys()) {
-            if (json.get(key) instanceof JsonNull) {
-                element.removeAttribute(I18N_PROPERTY + "." + key);
-            } else {
-                element.setPropertyJson(I18N_PROPERTY + "." + key,
-                        json.get(key));
-            }
+            element.setPropertyJson(I18N_PROPERTY + "." + key, json.get(key));
         }
         return get();
     }
