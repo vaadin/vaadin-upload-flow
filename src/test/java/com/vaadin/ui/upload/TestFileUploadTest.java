@@ -19,9 +19,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -56,7 +53,8 @@ public class TestFileUploadTest extends ComponentDemoTest {
 
         String content = uploadDialog.getText();
 
-        String expectedContent = actualFileName + "\nSimple upload\n"+getTempFileContents();
+        String expectedContent =
+                actualFileName + "\nSimple upload\n" + getTempFileContents();
 
         Assert.assertEquals("Upload content does not match expected",
                 expectedContent, content);
@@ -91,6 +89,12 @@ public class TestFileUploadTest extends ComponentDemoTest {
         return getDriver().findElement(By.id("test-upload"));
     }
 
+    /**
+     * Get the web component for the actual upload button hidden in the upload
+     * component.
+     *
+     * @return actual upload button
+     */
     private WebElement getInput() {
         return getInShadowRoot(getUpload(), By.id("fileInput"));
     }
