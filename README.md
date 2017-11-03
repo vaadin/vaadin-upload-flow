@@ -29,6 +29,4 @@ Documentation for flow can be found in [Flow documentation](https://github.com/v
 - Use the coding conventions from [Flow coding conventions](https://github.com/vaadin/flow/tree/master/eclipse)
 - [Submit a pull request](https://www.digitalocean.com/community/tutorials/how-to-create-a-pull-request-on-github) with detailed title and description
 - Wait for response from one of Vaadin Flow team members
-
-## License
-Apache License 2.0
+      
