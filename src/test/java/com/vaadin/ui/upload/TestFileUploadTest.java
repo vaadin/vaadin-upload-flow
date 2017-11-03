@@ -1,5 +1,5 @@
 /*
- * Copyright 2000-2016 Vaadin Ltd.
+ * Copyright 2000-2017 Vaadin Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -33,6 +33,9 @@ import org.openqa.selenium.remote.RemoteWebElement;
 
 import com.vaadin.flow.demo.ComponentDemoTest;
 
+/**
+ * Upload component test class.
+ */
 public class TestFileUploadTest extends ComponentDemoTest {
 
     @Test
@@ -57,14 +60,6 @@ public class TestFileUploadTest extends ComponentDemoTest {
 
         Assert.assertEquals("Upload content does not match expected",
                 expectedContent, content);
-    }
-
-    private String md5(String string) throws NoSuchAlgorithmException {
-        byte[] digest = MessageDigest.getInstance("MD5")
-                .digest(string.getBytes());
-        BigInteger bigInt = new BigInteger(1, digest);
-        String hashtext = bigInt.toString(16);
-        return hashtext;
     }
 
     /**
@@ -94,10 +89,6 @@ public class TestFileUploadTest extends ComponentDemoTest {
 
     private WebElement getUpload() {
         return getDriver().findElement(By.id("test-upload"));
-    }
-
-    private WebElement getSubmitButton() {
-        return getInShadowRoot(getUpload(), By.id("addButton"));
     }
 
     private WebElement getInput() {
