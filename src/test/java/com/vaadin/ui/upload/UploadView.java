@@ -81,6 +81,7 @@ public class UploadView extends DemoView {
         });
         // end-source-example
         upload.setMaxFileSize(500 * 1024);
+        upload.setId("test-upload");
 
         addCard("Simple in memory receiver for single file upload", upload);
     }
