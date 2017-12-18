@@ -43,9 +43,9 @@ import com.vaadin.flow.component.upload.UploadI18N;
 import com.vaadin.flow.component.upload.receivers.MemoryBuffer;
 import com.vaadin.flow.component.upload.receivers.MultiFileMemoryBuffer;
 import com.vaadin.flow.demo.DemoView;
+import com.vaadin.flow.internal.MessageDigestUtil;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.StreamResource;
-import com.vaadin.flow.util.MessageDigestUtil;
 
 /**
  * View for {@link Upload} demo.
