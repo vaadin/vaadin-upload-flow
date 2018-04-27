@@ -138,38 +138,6 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
     }
 
     /**
-     * <p>
-     * Description copied from corresponding location in WebComponent:
-     * </p>
-     * <p>
-     * Pass-through to input's capture attribute. Allows user to trigger device
-     * inputs such as camera or microphone immediately.
-     * </p>
-     * 
-     * @param capture
-     *            the String value to set
-     */
-    @Override
-    public void setCapture(String capture) {
-        super.setCapture(capture);
-    }
-
-    /**
-     * <p>
-     * Pass-through to input's capture attribute. Allows user to trigger device
-     * inputs such as camera or microphone immediately.
-     * <p>
-     * This property is not synchronized automatically from the client side, so
-     * the returned value may not be the same as in client side.
-     * </p>
-     * 
-     * @return the {@code capture} property from the webcomponent
-     */
-    public String getCapture() {
-        return super.getCaptureString();
-    }
-
-    /**
      * When <code>false</code>, it prevents uploads from triggering immediately
      * upon adding file(s). The default is <code>true</code>.
      * 
