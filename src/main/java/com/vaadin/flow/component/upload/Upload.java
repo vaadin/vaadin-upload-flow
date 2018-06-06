@@ -489,13 +489,16 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
         Objects.requireNonNull(i18n,
                 "The I18N properties object should not be null");
         this.i18n = i18n;
-        JsonObject i18nObject = (JsonObject) JsonSerializer.toJson(i18n);
-        Element element = getElement();
 
         runBeforeClientResponse(ui -> {
-            for (String key : i18nObject.keys()) {
-                ui.getPage().executeJavaScript("$0.set('i18n." + key + "', $1)",
-                        element, i18nObject.get(key));
+            if (i18n == this.i18n) {
+                JsonObject i18nObject = (JsonObject) JsonSerializer
+                    .toJson(this.i18n);
+                for (String key : i18nObject.keys()) {
+                    ui.getPage().executeJavaScript(
+                            "$0.set('i18n." + key + "', $1)", getElement(),
+                            i18nObject.get(key));
+                }
             }
         });
     }
@@ -507,7 +510,7 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
 
     /**
      * Gets the internationalization object previously set for this component.
-     *
+     * <p>
      * Note: updating the object content that is gotten from this method will
      * not update the language on the component if not set back using
      * {@link Upload#setI18n(UploadI18N)}
