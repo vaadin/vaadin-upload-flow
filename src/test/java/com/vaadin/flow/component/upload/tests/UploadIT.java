@@ -75,6 +75,12 @@ public class UploadIT extends ComponentDemoTest {
         List<LogEntry> logList1 = getLogEntries(Level.SEVERE);
         assertThat("There should have no severe message in the console",
                 logList1.size(), CoreMatchers.is(0));
+
+        WebElement upload = getUpload();
+        executeScript("arguments[0]._removeFile()", upload);
+        List<LogEntry> logList2 = getLogEntries(Level.SEVERE);
+        assertThat("There should have no severe message in the console",
+                logList2.size(), CoreMatchers.is(0));
     }
 
     @Test
