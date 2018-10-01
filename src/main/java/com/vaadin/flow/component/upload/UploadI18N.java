@@ -16,6 +16,7 @@
 package com.vaadin.flow.component.upload;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -27,7 +28,7 @@ public class UploadI18N implements Serializable {
     private String cancel;
     private Error error;
     private Uploading uploading;
-    private List<String> units;
+    private Units units;
 
     /**
      * Translations for dropping files.
@@ -414,6 +415,28 @@ public class UploadI18N implements Serializable {
     }
 
     /**
+     * units
+     *
+     */
+    public static class Units implements Serializable {
+        private List<String> size = Arrays.asList("B", "kB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB");
+
+        public List<String> getSize() {
+            return size;
+        }
+
+        /**
+         * units size list: ["B", "kB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"]
+         * @param size
+         * @return
+         */
+        public Units setSize(List<String> size) {
+            this.size = size;
+            return this;
+        }
+    }
+
+    /**
      * Abstract translation class for single and multi mode translations.
      */
     public static abstract class SingleMulti implements Serializable {
@@ -569,7 +592,7 @@ public class UploadI18N implements Serializable {
      *
      * @return list of unit translations
      */
-    public List<String> getUnits() {
+    public Units getUnits() {
         return units;
     }
 
@@ -580,7 +603,7 @@ public class UploadI18N implements Serializable {
      *         list of unit translations
      * @return i18n translations
      */
-    public UploadI18N setUnits(List<String> units) {
+    public UploadI18N setUnits(Units units) {
         this.units = units;
         return this;
     }
