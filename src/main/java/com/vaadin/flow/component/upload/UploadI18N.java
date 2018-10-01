@@ -603,8 +603,14 @@ public class UploadI18N implements Serializable {
      *         list of unit translations
      * @return i18n translations
      */
+    public UploadI18N setUnits(List<String> units) {
+        this.units = new Units().setSize(units);
+        return this;
+    }
+
     public UploadI18N setUnits(Units units) {
         this.units = units;
         return this;
     }
+
 }
