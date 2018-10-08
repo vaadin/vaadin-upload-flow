@@ -417,7 +417,7 @@ public class UploadI18N implements Serializable {
     /**
      * unit translations.
      */
-    public static class Units implements Serializable {
+    private static class Units implements Serializable {
         private List<String> size = Arrays.asList("B", "kB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB");
 
         /**
@@ -611,8 +611,8 @@ public class UploadI18N implements Serializable {
      *
      * @return list of unit translations
      */
-    public Units getUnits() {
-        return units;
+    public List<String> getUnits() {
+        return units.getSize();
     }
 
     /**
@@ -624,25 +624,6 @@ public class UploadI18N implements Serializable {
      */
     public UploadI18N setUnits(List<String> units) {
         this.units = new Units(units);
-        return this;
-    }
-
-    /**
-     * Set unit translations.
-     *
-     * usage:
-     *
-     * <code>
-     *     UploadI18N i18n=...;
-     *     i18n.setUnits(new Units(Arrays.asList("B", "kB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB")));
-     * </code>
-     *
-     * @param units
-     *         unit translations object.
-     * @return unit translations.
-     */
-    public UploadI18N setUnits(Units units) {
-        this.units = units;
         return this;
     }
 
