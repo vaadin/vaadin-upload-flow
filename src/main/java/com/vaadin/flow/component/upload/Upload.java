@@ -100,7 +100,7 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
     /**
      * Limit of files to upload, by default it is unlimited. If the value is set
      * to one, the native file browser will prevent selecting multiple files.
-     * 
+     *
      * @param maxFiles
      *            the maximum number of files allowed for the user to select
      */
@@ -111,7 +111,7 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
     /**
      * Gets the maximum number of files allowed for the user to select to
      * upload.
-     * 
+     *
      * @return the maximum number of files
      */
     public int getMaxFiles() {
@@ -122,7 +122,7 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
      * Specifies the maximum file size in bytes allowed to upload. Notice that
      * it is a client-side constraint, which will be checked before sending the
      * request.
-     * 
+     *
      * @param maxFileSize
      *            the maximum file size in bytes
      */
@@ -132,7 +132,7 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
 
     /**
      * Gets the maximum allowed file size in the client-side, in bytes.
-     * 
+     *
      * @return the maximum file size in bytes
      */
     public int getMaxFileSize() {
@@ -142,7 +142,7 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
     /**
      * When <code>false</code>, it prevents uploads from triggering immediately
      * upon adding file(s). The default is <code>true</code>.
-     * 
+     *
      * @param autoUpload
      *            <code>true</code> to allow uploads to start immediately after
      *            selecting files, <code>false</code> otherwise.
@@ -153,7 +153,7 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
 
     /**
      * Gets the auto upload status.
-     * 
+     *
      * @return <code>true</code> if the upload of files should start immediately
      *         after they are selected, <code>false</code> otherwise.
      */
@@ -167,7 +167,7 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
      * mobile devices do not support drag events in general. Setting it
      * <code>true</code> means that drop is enabled even in touch-devices, and
      * <code>false</code> disables drop in all devices.
-     * 
+     *
      * @param dropAllowed
      *            <code>true</code> to allow file dropping, <code>false</code>
      *            otherwise
@@ -180,7 +180,7 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
      * Gets whether file dropping is allowed or not. By default it's enabled in
      * desktop and disabled in touch devices because mobile devices do not
      * support drag events in general.
-     * 
+     *
      * @return <code>true</code> if file dropping is allowed, <code>false</code>
      *         otherwise.
      */
@@ -196,7 +196,7 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
      * <p>
      * Example: <code>"video/*","image/tiff"</code> or
      * <code>".pdf","audio/mp3"</code>
-     * 
+     *
      * @param acceptedFileTypes
      *            the allowed file types to be uploaded, or <code>null</code> to
      *            clear any restrictions
@@ -211,7 +211,7 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
 
     /**
      * Gets the list of accepted file types for upload.
-     * 
+     *
      * @return a list of allowed file types, never <code>null</code>.
      */
     public List<String> getAcceptedFileTypes() {
@@ -225,7 +225,7 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
     /**
      * Sets the component as the actionable button inside the upload component,
      * that starts the upload of the selected files.
-     * 
+     *
      * @param uploadButton
      *            the component to be clicked by the user to start the upload,
      *            or <code>null</code> to clear it
@@ -239,7 +239,7 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
 
     /**
      * Gets the component set as the upload button for the upload, if any.
-     * 
+     *
      * @return the actionable button, or <code>null</code> if none was set
      */
     public Component getUploadButton() {
@@ -249,7 +249,7 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
     /**
      * Sets the component to show as a message to the user to drop files in the
      * upload component. Despite of the name, the label can be any component.
-     * 
+     *
      * @param dropLabel
      *            the label to show for the users when it's possible drop files,
      *            or <code>null</code> to clear it
@@ -263,7 +263,7 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
 
     /**
      * Gets the component set as the drop label, if any.
-     * 
+     *
      * @return the drop label component, or <code>null</code> if none was set
      */
     public Component getDropLabel() {
@@ -274,7 +274,7 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
      * Sets the component to show as the drop label icon. The icon is visible
      * when the user can drop files to this upload component. Despite of the
      * name, the drop label icon can be any component.
-     * 
+     *
      * @param dropLabelIcon
      *            the label icon to show for the users when it's possible to
      *            drop files, or <code>null</code> to cleat it
@@ -288,7 +288,7 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
 
     /**
      * Gets the component set as the drop label icon, if any.
-     * 
+     *
      * @return the drop label icon component, or <code>null</code> if none was
      *         set
      */
@@ -350,33 +350,33 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
     }
 
     private void fireStarted(String filename, String MIMEType,
-            long contentLength) {
-        fireEvent(new StartedEvent(this, filename, MIMEType, contentLength));
+            long contentLength, int index) {
+        fireEvent(new StartedEvent(this, filename, MIMEType, contentLength, index));
     }
 
     private void fireUploadInterrupted(String filename, String MIMEType,
-            long length) {
-        fireEvent(new FailedEvent(this, filename, MIMEType, length));
+            long length, int index) {
+        fireEvent(new FailedEvent(this, filename, MIMEType, length, index));
     }
 
     private void fireNoInputStream(String filename, String MIMEType,
-            long length) {
-        fireEvent(new NoInputStreamEvent(this, filename, MIMEType, length));
+            long length, int index) {
+        fireEvent(new NoInputStreamEvent(this, filename, MIMEType, length, index));
     }
 
     private void fireNoOutputStream(String filename, String MIMEType,
-            long length) {
-        fireEvent(new NoOutputStreamEvent(this, filename, MIMEType, length));
+            long length, int index) {
+        fireEvent(new NoOutputStreamEvent(this, filename, MIMEType, length, index));
     }
 
     private void fireUploadInterrupted(String filename, String MIMEType,
-            long length, Exception e) {
-        fireEvent(new FailedEvent(this, filename, MIMEType, length, e));
+            long length, int index, Exception e) {
+        fireEvent(new FailedEvent(this, filename, MIMEType, length, index, e));
     }
 
     private void fireUploadSuccess(String filename, String MIMEType,
-            long length) {
-        fireEvent(new SucceededEvent(this, filename, MIMEType, length));
+            long length, int index) {
+        fireEvent(new SucceededEvent(this, filename, MIMEType, length, index));
     }
 
     /**
@@ -386,9 +386,11 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
      *            bytes received so far
      * @param contentLength
      *            actual size of the file being uploaded, if known
+     * @param index
+     *            the index of the file being uploaded
      */
-    protected void fireUpdateProgress(long totalBytes, long contentLength) {
-        fireEvent(new ProgressUpdateEvent(this, totalBytes, contentLength));
+    protected void fireUpdateProgress(long totalBytes, long contentLength, int index) {
+        fireEvent(new ProgressUpdateEvent(this, totalBytes, contentLength, index));
     }
 
     /**
@@ -567,7 +569,7 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
         @Override
         public void onProgress(StreamVariable.StreamingProgressEvent event) {
             upload.fireUpdateProgress(event.getBytesReceived(),
-                    event.getContentLength());
+                    event.getContentLength(), -1);
         }
 
         @Override
@@ -592,7 +594,7 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
             upload.startUpload();
             try {
                 upload.fireStarted(event.getFileName(), event.getMimeType(),
-                        event.getContentLength());
+                        event.getContentLength(), -1);
             } finally {
                 lastStartedEvent.addLast(event);
             }
@@ -602,7 +604,7 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
         public void streamingFinished(StreamVariable.StreamingEndEvent event) {
             try {
                 upload.fireUploadSuccess(event.getFileName(),
-                        event.getMimeType(), event.getContentLength());
+                        event.getMimeType(), event.getContentLength(), -1);
             } finally {
                 upload.endUpload();
             }
@@ -614,13 +616,13 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
                 Exception exception = event.getException();
                 if (exception instanceof NoInputStreamException) {
                     upload.fireNoInputStream(event.getFileName(),
-                            event.getMimeType(), 0);
+                            event.getMimeType(), 0, -1);
                 } else if (exception instanceof NoOutputStreamException) {
                     upload.fireNoOutputStream(event.getFileName(),
-                            event.getMimeType(), 0);
+                            event.getMimeType(), 0, -1);
                 } else {
                     upload.fireUploadInterrupted(event.getFileName(),
-                            event.getMimeType(), event.getBytesReceived(),
+                            event.getMimeType(), event.getBytesReceived(), -1,
                             exception);
                 }
             } finally {

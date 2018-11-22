@@ -31,11 +31,13 @@ public class SucceededEvent extends FinishedEvent {
      * @param MIMEType
      *            the MIME type of the received file.
      * @param length
-     *            the length of the received file.
+     *            the length of the received file
+     * @param index
+     *            the index of the received file
      */
     public SucceededEvent(Upload source, String filename, String MIMEType,
-            long length) {
-        super(source, filename, MIMEType, length);
+            long length, int index) {
+        super(source, filename, MIMEType, length, index);
     }
 
 }

@@ -35,6 +35,11 @@ public class ProgressUpdateEvent extends ComponentEvent<Upload> {
     private final long contentLength;
 
     /**
+     * Received file index.
+     */
+    private final int index;
+
+    /**
      * Event constructor method to construct a new progress event.
      *
      * @param source
@@ -43,12 +48,15 @@ public class ProgressUpdateEvent extends ComponentEvent<Upload> {
      *            bytes transferred
      * @param contentLength
      *            total size of file currently being uploaded, -1 if unknown
+     * @param index
+     *            the index of the file being uploaded
      */
     public ProgressUpdateEvent(Upload source, long readBytes,
-            long contentLength) {
+            long contentLength, int index) {
         super(source, false);
         this.readBytes = readBytes;
         this.contentLength = contentLength;
+        this.index = index;
     }
 
     /**
@@ -77,4 +85,12 @@ public class ProgressUpdateEvent extends ComponentEvent<Upload> {
     public long getContentLength() {
         return contentLength;
     }
+
+    /**
+     * @return the index of the file that is being uploaded
+     */
+    public int getIndex() {
+        return index;
+    }
+
 }

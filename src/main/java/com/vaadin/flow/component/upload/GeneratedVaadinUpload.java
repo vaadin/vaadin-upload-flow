@@ -847,15 +847,18 @@ public abstract class GeneratedVaadinUpload<R extends GeneratedVaadinUpload<R>>
         private final JsonObject detail;
         private final JsonObject detailXhr;
         private final JsonObject detailFile;
+        private final int index;
 
         public UploadAbortEvent(R source, boolean fromClient,
                 @EventData("event.detail") JsonObject detail,
                 @EventData("event.detail.xhr") JsonObject detailXhr,
-                @EventData("event.detail.file") JsonObject detailFile) {
+                @EventData("event.detail.file") JsonObject detailFile,
+                @EventData("event.detail.index") int index) {
             super(source, fromClient);
             this.detail = detail;
             this.detailXhr = detailXhr;
             this.detailFile = detailFile;
+            this.index = index;
         }
 
         public JsonObject getDetail() {
@@ -868,6 +871,10 @@ public abstract class GeneratedVaadinUpload<R extends GeneratedVaadinUpload<R>>
 
         public JsonObject getDetailFile() {
             return detailFile;
+        }
+
+        public int getIndex() {
+            return index;
         }
     }
 
@@ -893,17 +900,20 @@ public abstract class GeneratedVaadinUpload<R extends GeneratedVaadinUpload<R>>
         private final JsonObject detailXhr;
         private final JsonObject detailFile;
         private final JsonObject detailFileUploadTarget;
+        private final int index;
 
         public UploadBeforeEvent(R source, boolean fromClient,
                 @EventData("event.detail") JsonObject detail,
                 @EventData("event.detail.xhr") JsonObject detailXhr,
                 @EventData("event.detail.file") JsonObject detailFile,
-                @EventData("event.detail.file.uploadTarget") JsonObject detailFileUploadTarget) {
+                @EventData("event.detail.file.uploadTarget") JsonObject detailFileUploadTarget,
+                @EventData("event.detail.index") int index) {
             super(source, fromClient);
             this.detail = detail;
             this.detailXhr = detailXhr;
             this.detailFile = detailFile;
             this.detailFileUploadTarget = detailFileUploadTarget;
+            this.index = index;
         }
 
         public JsonObject getDetail() {
@@ -920,6 +930,10 @@ public abstract class GeneratedVaadinUpload<R extends GeneratedVaadinUpload<R>>
 
         public JsonObject getDetailFileUploadTarget() {
             return detailFileUploadTarget;
+        }
+
+        public int getIndex() {
+            return index;
         }
     }
 
@@ -944,15 +958,18 @@ public abstract class GeneratedVaadinUpload<R extends GeneratedVaadinUpload<R>>
         private final JsonObject detail;
         private final JsonObject detailXhr;
         private final JsonObject detailFile;
+        private final int index;
 
         public UploadErrorEvent(R source, boolean fromClient,
                 @EventData("event.detail") JsonObject detail,
                 @EventData("event.detail.xhr") JsonObject detailXhr,
-                @EventData("event.detail.file") JsonObject detailFile) {
+                @EventData("event.detail.file") JsonObject detailFile,
+                @EventData("event.detail.index") int index) {
             super(source, fromClient);
             this.detail = detail;
             this.detailXhr = detailXhr;
             this.detailFile = detailFile;
+            this.index = index;
         }
 
         public JsonObject getDetail() {
@@ -965,6 +982,10 @@ public abstract class GeneratedVaadinUpload<R extends GeneratedVaadinUpload<R>>
 
         public JsonObject getDetailFile() {
             return detailFile;
+        }
+
+        public int getIndex() {
+            return index;
         }
     }
 
@@ -989,15 +1010,18 @@ public abstract class GeneratedVaadinUpload<R extends GeneratedVaadinUpload<R>>
         private final JsonObject detail;
         private final JsonObject detailXhr;
         private final JsonObject detailFile;
+        private final int index;
 
         public UploadProgressEvent(R source, boolean fromClient,
                 @EventData("event.detail") JsonObject detail,
                 @EventData("event.detail.xhr") JsonObject detailXhr,
-                @EventData("event.detail.file") JsonObject detailFile) {
+                @EventData("event.detail.file") JsonObject detailFile,
+                @EventData("event.detail.index") int index) {
             super(source, fromClient);
             this.detail = detail;
             this.detailXhr = detailXhr;
             this.detailFile = detailFile;
+            this.index = index;
         }
 
         public JsonObject getDetail() {
@@ -1010,6 +1034,10 @@ public abstract class GeneratedVaadinUpload<R extends GeneratedVaadinUpload<R>>
 
         public JsonObject getDetailFile() {
             return detailFile;
+        }
+
+        public int getIndex() {
+            return index;
         }
     }
 
@@ -1035,17 +1063,20 @@ public abstract class GeneratedVaadinUpload<R extends GeneratedVaadinUpload<R>>
         private final JsonObject detailXhr;
         private final JsonObject detailFile;
         private final JsonObject detailFormData;
+        private final int index;
 
         public UploadRequestEvent(R source, boolean fromClient,
                 @EventData("event.detail") JsonObject detail,
                 @EventData("event.detail.xhr") JsonObject detailXhr,
                 @EventData("event.detail.file") JsonObject detailFile,
-                @EventData("event.detail.formData") JsonObject detailFormData) {
+                @EventData("event.detail.formData") JsonObject detailFormData,
+                @EventData("event.detail.index") int index) {
             super(source, fromClient);
             this.detail = detail;
             this.detailXhr = detailXhr;
             this.detailFile = detailFile;
             this.detailFormData = detailFormData;
+            this.index = index;
         }
 
         public JsonObject getDetail() {
@@ -1062,6 +1093,10 @@ public abstract class GeneratedVaadinUpload<R extends GeneratedVaadinUpload<R>>
 
         public JsonObject getDetailFormData() {
             return detailFormData;
+        }
+
+        public int getIndex() {
+            return index;
         }
     }
 
@@ -1086,15 +1121,18 @@ public abstract class GeneratedVaadinUpload<R extends GeneratedVaadinUpload<R>>
         private final JsonObject detail;
         private final JsonObject detailXhr;
         private final JsonObject detailFile;
+        private final int index;
 
         public UploadResponseEvent(R source, boolean fromClient,
                 @EventData("event.detail") JsonObject detail,
                 @EventData("event.detail.xhr") JsonObject detailXhr,
-                @EventData("event.detail.file") JsonObject detailFile) {
+                @EventData("event.detail.file") JsonObject detailFile,
+                @EventData("event.detail.index") int index) {
             super(source, fromClient);
             this.detail = detail;
             this.detailXhr = detailXhr;
             this.detailFile = detailFile;
+            this.index = index;
         }
 
         public JsonObject getDetail() {
@@ -1107,6 +1145,10 @@ public abstract class GeneratedVaadinUpload<R extends GeneratedVaadinUpload<R>>
 
         public JsonObject getDetailFile() {
             return detailFile;
+        }
+
+        public int getIndex() {
+            return index;
         }
     }
 
@@ -1131,15 +1173,18 @@ public abstract class GeneratedVaadinUpload<R extends GeneratedVaadinUpload<R>>
         private final JsonObject detail;
         private final JsonObject detailXhr;
         private final JsonObject detailFile;
+        private final int index;
 
         public UploadRetryEvent(R source, boolean fromClient,
                 @EventData("event.detail") JsonObject detail,
                 @EventData("event.detail.xhr") JsonObject detailXhr,
-                @EventData("event.detail.file") JsonObject detailFile) {
+                @EventData("event.detail.file") JsonObject detailFile,
+                @EventData("event.detail.index") int index) {
             super(source, fromClient);
             this.detail = detail;
             this.detailXhr = detailXhr;
             this.detailFile = detailFile;
+            this.index = index;
         }
 
         public JsonObject getDetail() {
@@ -1152,6 +1197,10 @@ public abstract class GeneratedVaadinUpload<R extends GeneratedVaadinUpload<R>>
 
         public JsonObject getDetailFile() {
             return detailFile;
+        }
+
+        public int getIndex() {
+            return index;
         }
     }
 
@@ -1176,15 +1225,18 @@ public abstract class GeneratedVaadinUpload<R extends GeneratedVaadinUpload<R>>
         private final JsonObject detail;
         private final JsonObject detailXhr;
         private final JsonObject detailFile;
+        private final int index;
 
         public UploadStartEvent(R source, boolean fromClient,
                 @EventData("event.detail") JsonObject detail,
                 @EventData("event.detail.xhr") JsonObject detailXhr,
-                @EventData("event.detail.file") JsonObject detailFile) {
+                @EventData("event.detail.file") JsonObject detailFile,
+                @EventData("event.detail.index") int index) {
             super(source, fromClient);
             this.detail = detail;
             this.detailXhr = detailXhr;
             this.detailFile = detailFile;
+            this.index = index;
         }
 
         public JsonObject getDetail() {
@@ -1197,6 +1249,10 @@ public abstract class GeneratedVaadinUpload<R extends GeneratedVaadinUpload<R>>
 
         public JsonObject getDetailFile() {
             return detailFile;
+        }
+
+        public int getIndex() {
+            return index;
         }
     }
 
@@ -1221,15 +1277,18 @@ public abstract class GeneratedVaadinUpload<R extends GeneratedVaadinUpload<R>>
         private final JsonObject detail;
         private final JsonObject detailXhr;
         private final JsonObject detailFile;
+        private final int index;
 
         public UploadSuccessEvent(R source, boolean fromClient,
                 @EventData("event.detail") JsonObject detail,
                 @EventData("event.detail.xhr") JsonObject detailXhr,
-                @EventData("event.detail.file") JsonObject detailFile) {
+                @EventData("event.detail.file") JsonObject detailFile,
+                @EventData("event.detail.index") int index) {
             super(source, fromClient);
             this.detail = detail;
             this.detailXhr = detailXhr;
             this.detailFile = detailFile;
+            this.index = index;
         }
 
         public JsonObject getDetail() {
@@ -1242,6 +1301,10 @@ public abstract class GeneratedVaadinUpload<R extends GeneratedVaadinUpload<R>>
 
         public JsonObject getDetailFile() {
             return detailFile;
+        }
+
+        public int getIndex() {
+            return index;
         }
     }
 

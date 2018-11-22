@@ -43,6 +43,11 @@ public class FinishedEvent extends ComponentEvent<Upload> {
     private final String fileName;
 
     /**
+     * Received file index.
+     */
+    private final int index;
+
+    /**
      * @param source
      *            the source of the file.
      * @param fileName
@@ -51,13 +56,16 @@ public class FinishedEvent extends ComponentEvent<Upload> {
      *            the MIME type of the received file.
      * @param length
      *            the length of the received file.
+     * @param index
+     *            the index of the received file
      */
     public FinishedEvent(Upload source, String fileName, String MIMEType,
-            long length) {
+            long length, int index) {
         super(source, false);
         type = MIMEType;
         this.fileName = fileName;
         this.length = length;
+        this.index = index;
     }
 
     /**
@@ -94,6 +102,13 @@ public class FinishedEvent extends ComponentEvent<Upload> {
      */
     public long getContentLength() {
         return length;
+    }
+
+    /**
+     * @return the index of the file that is being uploaded
+     */
+    public int getIndex() {
+        return index;
     }
 
 }

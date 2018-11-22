@@ -35,12 +35,14 @@ public class FailedEvent extends FinishedEvent {
      *            the MIME type of the received file.
      * @param length
      *            the number of uploaded bytes
+     * @param index
+     *            the index of the received file
      * @param reason
      *            exception that failed the upload
      */
     public FailedEvent(Upload source, String filename, String MIMEType,
-            long length, Exception reason) {
-        this(source, filename, MIMEType, length);
+            long length, int index, Exception reason) {
+        this(source, filename, MIMEType, length, index);
         this.reason = reason;
     }
 
@@ -54,10 +56,12 @@ public class FailedEvent extends FinishedEvent {
      *            the MIME type of the received file.
      * @param length
      *            the number of uploaded bytes
+     * @param index
+     *            the index of the received file
      */
     public FailedEvent(Upload source, String filename, String MIMEType,
-            long length) {
-        super(source, filename, MIMEType, length);
+            long length, int index) {
+        super(source, filename, MIMEType, length, index);
     }
 
     /**
