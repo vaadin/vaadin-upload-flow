@@ -34,6 +34,7 @@ import com.vaadin.flow.server.NoInputStreamException;
 import com.vaadin.flow.server.NoOutputStreamException;
 import com.vaadin.flow.server.StreamReceiver;
 import com.vaadin.flow.server.StreamVariable;
+import com.vaadin.flow.server.StreamVariable.StreamingEvent;
 import com.vaadin.flow.shared.Registration;
 
 import elemental.json.JsonNull;
@@ -336,7 +337,8 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
         }
     }
 
-    private void endUpload() {
+    private void endUpload(StreamingEvent event) {
+    	this.fireUploadFinish(event.getFileName(), event.getMimeType(), event.getContentLength());
         activeUploads--;
         interrupted = false;
     }
@@ -378,6 +380,11 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
     private void fireUploadSuccess(String filename, String MIMEType,
             long length) {
         fireEvent(new SucceededEvent(this, filename, MIMEType, length));
+    }
+    
+    private void fireUploadFinish(String filename, String MIMEType,
+            long length) {
+        fireEvent(new FinishedEvent(this, filename, MIMEType, length));
     }
 
     /**
@@ -605,7 +612,7 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
                 upload.fireUploadSuccess(event.getFileName(),
                         event.getMimeType(), event.getContentLength());
             } finally {
-                upload.endUpload();
+                upload.endUpload(event);
             }
         }
 
@@ -625,7 +632,7 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
                             exception);
                 }
             } finally {
-                upload.endUpload();
+                upload.endUpload(event);
             }
         }
     }
