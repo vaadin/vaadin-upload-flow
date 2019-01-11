@@ -337,13 +337,9 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
         }
     }
 
-    private void endUpload(StreamingEvent event) {
-    	try {
-    		this.fireUploadFinish(event.getFileName(), event.getMimeType(), event.getContentLength());
-    	} finally {
-    		activeUploads--;
-    		interrupted = false;
-    	}
+    private void endUpload() {
+    	activeUploads--;
+    	interrupted = false;
     }
 
     /**
@@ -615,7 +611,11 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
                 upload.fireUploadSuccess(event.getFileName(),
                         event.getMimeType(), event.getContentLength());
             } finally {
-                upload.endUpload(event);
+            	try {
+            		upload.fireUploadFinish(event.getFileName(), event.getMimeType(), event.getContentLength());
+            	} finally {
+            		upload.endUpload();
+            	}
             }
         }
 
@@ -635,7 +635,11 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
                             exception);
                 }
             } finally {
-                upload.endUpload(event);
+            	try {
+            		upload.fireUploadFinish(event.getFileName(), event.getMimeType(), event.getContentLength());
+            	} finally {
+            		upload.endUpload();
+            	}
             }
         }
     }
