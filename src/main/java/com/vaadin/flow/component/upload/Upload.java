@@ -338,9 +338,12 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
     }
 
     private void endUpload(StreamingEvent event) {
-    	this.fireUploadFinish(event.getFileName(), event.getMimeType(), event.getContentLength());
-        activeUploads--;
-        interrupted = false;
+    	try {
+    		this.fireUploadFinish(event.getFileName(), event.getMimeType(), event.getContentLength());
+    	} finally {
+    		activeUploads--;
+    		interrupted = false;
+    	}
     }
 
     /**
