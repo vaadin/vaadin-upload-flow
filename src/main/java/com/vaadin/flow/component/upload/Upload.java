@@ -34,7 +34,6 @@ import com.vaadin.flow.server.NoInputStreamException;
 import com.vaadin.flow.server.NoOutputStreamException;
 import com.vaadin.flow.server.StreamReceiver;
 import com.vaadin.flow.server.StreamVariable;
-import com.vaadin.flow.server.StreamVariable.StreamingEvent;
 import com.vaadin.flow.shared.Registration;
 
 import elemental.json.JsonNull;
@@ -338,8 +337,8 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
     }
 
     private void endUpload() {
-    	activeUploads--;
-    	interrupted = false;
+        activeUploads--;
+        interrupted = false;
     }
 
     /**
@@ -610,12 +609,9 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
             try {
                 upload.fireUploadSuccess(event.getFileName(),
                         event.getMimeType(), event.getContentLength());
+                upload.fireUploadFinish(event.getFileName(), event.getMimeType(), event.getContentLength());
             } finally {
-            	try {
-            		upload.fireUploadFinish(event.getFileName(), event.getMimeType(), event.getContentLength());
-            	} finally {
-            		upload.endUpload();
-            	}
+                upload.endUpload();
             }
         }
 
@@ -634,12 +630,9 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
                             event.getMimeType(), event.getBytesReceived(),
                             exception);
                 }
+                upload.fireUploadFinish(event.getFileName(), event.getMimeType(), event.getContentLength());
             } finally {
-            	try {
-            		upload.fireUploadFinish(event.getFileName(), event.getMimeType(), event.getContentLength());
-            	} finally {
-            		upload.endUpload();
-            	}
+                upload.endUpload();
             }
         }
     }
