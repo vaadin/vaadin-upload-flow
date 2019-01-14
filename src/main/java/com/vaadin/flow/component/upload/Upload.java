@@ -609,9 +609,9 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
             try {
                 upload.fireUploadSuccess(event.getFileName(),
                         event.getMimeType(), event.getContentLength());
-                upload.fireUploadFinish(event.getFileName(), event.getMimeType(), event.getContentLength());
             } finally {
                 upload.endUpload();
+                upload.fireUploadFinish(event.getFileName(), event.getMimeType(), event.getContentLength());
             }
         }
 
@@ -630,9 +630,9 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
                             event.getMimeType(), event.getBytesReceived(),
                             exception);
                 }
-                upload.fireUploadFinish(event.getFileName(), event.getMimeType(), event.getContentLength());
             } finally {
                 upload.endUpload();
+                upload.fireUploadFinish(event.getFileName(), event.getMimeType(), event.getContentLength());
             }
         }
     }
