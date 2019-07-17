@@ -51,17 +51,35 @@ public class UploadIT extends ComponentDemoTest {
         fillPathToUploadInput(tempFile.getPath());
 
         WebElement uploadOutput = getDriver().findElement(By.id("test-output"));
-        String actualFileName = uploadOutput.findElement(By.tagName("p"))
-                .getText();
-        Assert.assertEquals("File name was wrong.", tempFile.getName(),
-                actualFileName);
 
         String content = uploadOutput.getText();
 
-        String expectedContent = actualFileName + "\n" + getTempFileContents();
+        String expectedContent = tempFile.getName() + getTempFileContents();
 
         Assert.assertEquals("Upload content does not match expected",
                 expectedContent, content);
+    }
+
+    @Test
+    public void testUploadEventOrder() throws Exception {
+        open();
+
+        waitUntil(driver -> getUpload().isDisplayed());
+
+        File tempFile = createTempFile();
+
+        File tempFile2 = File.createTempFile("TestFileUpload2", ".txt");
+        BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+        writer.write(getTempFileContents());
+        writer.close();
+        tempFile2.deleteOnExit();
+        fillPathToUploadInput(tempFile.getPath(), tempFile2.getPath());
+
+        WebElement eventsOutput = getDriver()
+                .findElement(By.id("test-events-output"));
+
+        Assert.assertEquals("Upload content does not match expected",
+                "-succeeded-succeeded-finished", eventsOutput.getText());
     }
 
     @Test
@@ -111,12 +129,13 @@ public class UploadIT extends ComponentDemoTest {
         return "This is a test file! Row 2 Row3";
     }
 
-    private void fillPathToUploadInput(String tempFileName) throws Exception {
+    private void fillPathToUploadInput(String... tempFileNames)
+            throws Exception {
         // create a valid path in upload input element. Instead of selecting a
         // file by some file browsing dialog, we use the local path directly.
         WebElement input = getInput();
         setLocalFileDetector(input);
-        input.sendKeys(tempFileName);
+        input.sendKeys(String.join("\n", tempFileNames));
     }
 
     private WebElement getUpload() {
