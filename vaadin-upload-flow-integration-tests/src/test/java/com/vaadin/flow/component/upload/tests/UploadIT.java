@@ -15,8 +15,6 @@
  */
 package com.vaadin.flow.component.upload.tests;
 
-import static org.junit.Assert.assertThat;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -36,6 +34,8 @@ import org.openqa.selenium.remote.RemoteWebElement;
 
 import com.vaadin.flow.testutil.AbstractComponentIT;
 import com.vaadin.flow.testutil.TestPath;
+
+import static org.junit.Assert.assertThat;
 
 /**
  * Upload component test class.
@@ -69,18 +69,14 @@ public class UploadIT extends AbstractComponentIT {
         waitUntil(driver -> getUpload().isDisplayed());
 
         File tempFile = createTempFile();
+        File tempFile2 = createTempFile();
 
-        File tempFile2 = File.createTempFile("TestFileUpload2", ".txt");
-        BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
-        writer.write(getTempFileContents());
-        writer.close();
-        tempFile2.deleteOnExit();
         fillPathToUploadInput(tempFile.getPath(), tempFile2.getPath());
 
         WebElement eventsOutput = getDriver()
                 .findElement(By.id("test-events-output"));
 
-        Assert.assertEquals("Upload content does not match expected",
+        Assert.assertEquals("Upload event order does not match expected",
                 "-succeeded-succeeded-finished", eventsOutput.getText());
     }
 
@@ -114,12 +110,15 @@ public class UploadIT extends AbstractComponentIT {
         Assert.assertEquals("Перетащите файл сюда...", dropLabel.getText());
     }
 
+    private int tmpFileIndex = 0;
+
     /**
      * @return The generated temp file handle
      * @throws IOException
      */
     private File createTempFile() throws IOException {
-        File tempFile = File.createTempFile("TestFileUpload", ".txt");
+        File tempFile = File.createTempFile("TestFileUpload" + ++tmpFileIndex,
+                ".txt");
         BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
         writer.write(getTempFileContents());
         writer.close();
@@ -137,7 +136,7 @@ public class UploadIT extends AbstractComponentIT {
         // file by some file browsing dialog, we use the local path directly.
         WebElement input = getInput();
         setLocalFileDetector(input);
-        input.sendKeys(String.join("\n", tempFileNames));
+        input.sendKeys(String.join("\n ", tempFileNames));
     }
 
     private WebElement getUpload() {
