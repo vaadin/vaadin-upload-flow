@@ -15,6 +15,8 @@
  */
 package com.vaadin.flow.component.upload.tests;
 
+import static org.junit.Assert.assertThat;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -32,14 +34,14 @@ import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.remote.LocalFileDetector;
 import org.openqa.selenium.remote.RemoteWebElement;
 
-import com.vaadin.flow.demo.ComponentDemoTest;
-
-import static org.junit.Assert.assertThat;
+import com.vaadin.flow.testutil.AbstractComponentIT;
+import com.vaadin.flow.testutil.TestPath;
 
 /**
  * Upload component test class.
  */
-public class UploadIT extends ComponentDemoTest {
+@TestPath("vaadin-upload")
+public class UploadIT extends AbstractComponentIT {
 
     @Test
     public void testUploadAnyFile() throws Exception {
@@ -168,10 +170,5 @@ public class UploadIT extends ComponentDemoTest {
                     "Expected argument of type RemoteWebElement, received "
                             + element.getClass().getName());
         }
-    }
-
-    @Override
-    protected String getTestPath() {
-        return "/vaadin-upload";
     }
 }

@@ -68,7 +68,7 @@ public class UploadView extends Div {
         output.setId("test-output");
         eventsOutput.setId("test-events-output");
 
-        addCard("Simple in memory receiver for single file upload", upload,
+        addCard("Simple in memory receiver", upload,
                 output, eventsOutput);
     }
 
