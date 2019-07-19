@@ -69,15 +69,16 @@ public class UploadIT extends AbstractComponentIT {
         waitUntil(driver -> getUpload().isDisplayed());
 
         File tempFile = createTempFile();
-        File tempFile2 = createTempFile();
 
-        fillPathToUploadInput(tempFile.getPath(), tempFile2.getPath());
+        fillPathToUploadInput(tempFile.getPath(), tempFile.getPath(),
+                tempFile.getPath());
 
         WebElement eventsOutput = getDriver()
                 .findElement(By.id("test-events-output"));
 
         Assert.assertEquals("Upload event order does not match expected",
-                "-succeeded-succeeded-finished", eventsOutput.getText());
+                "-succeeded-succeeded-succeeded-finished",
+                eventsOutput.getText());
     }
 
     @Test
@@ -110,15 +111,12 @@ public class UploadIT extends AbstractComponentIT {
         Assert.assertEquals("Перетащите файл сюда...", dropLabel.getText());
     }
 
-    private int tmpFileIndex = 0;
-
     /**
      * @return The generated temp file handle
      * @throws IOException
      */
     private File createTempFile() throws IOException {
-        File tempFile = File.createTempFile("TestFileUpload" + ++tmpFileIndex,
-                ".txt");
+        File tempFile = File.createTempFile("TestFileUpload", ".txt");
         BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
         writer.write(getTempFileContents());
         writer.close();
