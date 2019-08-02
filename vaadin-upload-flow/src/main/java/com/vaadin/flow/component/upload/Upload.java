@@ -487,6 +487,20 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
         return addListener(SucceededEvent.class, listener);
     }
 
+
+    /**
+     * Adds a listener for {@code file-reject} events fired when a file cannot be added due to some constrains:
+     * {@code setMaxFileSize, setMaxFiles, setAcceptedFileTypes}
+     *
+     * @param listener
+     *            the listener
+     * @return a {@link Registration} for removing the event listener
+     */
+    public Registration addFileRejectedListener(
+            ComponentEventListener<FileRejectEvent<Upload>> listener) {
+        return addFileRejectListener(listener);
+    }
+
     /**
      * Return the current receiver.
      *
