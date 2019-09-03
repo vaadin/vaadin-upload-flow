@@ -134,7 +134,7 @@ public class UploadIT extends AbstractComponentIT {
         // file by some file browsing dialog, we use the local path directly.
         WebElement input = getInput();
         setLocalFileDetector(input);
-        input.sendKeys(String.join("\n ", tempFileNames));
+        input.sendKeys(String.join(System.lineSeparator(), tempFileNames));
     }
 
     private WebElement getUpload() {
