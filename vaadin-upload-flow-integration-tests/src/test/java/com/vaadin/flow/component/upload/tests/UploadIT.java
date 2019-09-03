@@ -24,6 +24,7 @@ import java.util.logging.Level;
 
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
+import org.junit.AssumptionViolatedException;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -63,7 +64,13 @@ public class UploadIT extends AbstractComponentIT {
     }
 
     @Test
-    public void testUploadEventOrder() throws Exception {
+    public void testUploadMultipleEventOrder() throws Exception {
+        if (getRunLocallyBrowser() == null) {
+            // Multiple file upload does not work with Remotewebdriver
+            // https://github.com/SeleniumHQ/selenium/issues/7408
+            throw new AssumptionViolatedException(
+                    "Skipped <Multiple file upload does not work with Remotewebdriver>");
+        }
         open();
 
         waitUntil(driver -> getUpload().isDisplayed());
@@ -79,6 +86,23 @@ public class UploadIT extends AbstractComponentIT {
         Assert.assertEquals("Upload event order does not match expected",
                 "-succeeded-succeeded-succeeded-finished",
                 eventsOutput.getText());
+    }
+
+    @Test
+    public void testUploadEventOrder() throws Exception {
+        open();
+
+        waitUntil(driver -> getUpload().isDisplayed());
+
+        File tempFile = createTempFile();
+
+        fillPathToUploadInput(tempFile.getPath());
+
+        WebElement eventsOutput = getDriver()
+                .findElement(By.id("test-events-output"));
+
+        Assert.assertEquals("Upload event order does not match expected",
+                "-succeeded-finished", eventsOutput.getText());
     }
 
     @Test
