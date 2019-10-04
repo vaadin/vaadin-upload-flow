@@ -15,6 +15,8 @@
  */
 package com.vaadin.flow.component.upload.demo;
 
+import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.html.Paragraph;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
@@ -62,6 +64,7 @@ public class UploadView extends DemoView {
         createNonImmediateUpload();
         changeDefaultComponents();
         i18nSampleUpload();
+        createUploadWithFileConstraints();
     }
 
     private void createSimpleUpload() {
@@ -86,6 +89,31 @@ public class UploadView extends DemoView {
 
         addCard("Simple in memory receiver for single file upload", upload,
                 output);
+    }
+
+    private void createUploadWithFileConstraints() {
+        Div output = new Div();
+
+        //@formatter:off
+        // begin-source-example
+        // source-example-heading: Simple single file upload showing messages when file rejected
+        MemoryBuffer buffer = new MemoryBuffer();
+        Upload upload = new Upload(buffer);
+        upload.setMaxFiles(1);
+        upload.setDropLabel(new Label("Upload a 300 bytes file in .csv format"));
+        upload.setAcceptedFileTypes("text/csv");
+        upload.setMaxFileSize(300);
+
+        upload.addFileRejectedListener(event -> {
+            Paragraph component = new Paragraph();
+            showOutput(event.getDetail().toString(), component, output);
+        });
+        // end-source-example
+        //@formatter:on
+        upload.setId("test-upload");
+        output.setId("test-output");
+
+        addCard("Simple single file upload showing messages when file rejected", upload, output);
     }
 
     private void createSimpleMultiFileUpload() {
