@@ -80,8 +80,9 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
         getElement().setAttribute("target", new StreamReceiver(
                 getElement().getNode(), "upload", getStreamVariable()));
 
-        DomEventListener uploadsFinishedListener = e -> {
-            JsonArray files = e.getEventData().getArray("element.files");
+      final String elementFiles = "element.files";
+      DomEventListener uploadsFinishedListener = e -> {
+            JsonArray files = e.getEventData().getArray(elementFiles);
 
             boolean isUploading = IntStream.range(0, files.length()).anyMatch(
                     index -> files.getObject(index).getBoolean("uploading"));
@@ -94,14 +95,9 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
 
         addUploadStartListener(e -> this.uploading = true);
         getElement().addEventListener("upload-success", uploadsFinishedListener)
-                .addEventData("element.files");
+                .addEventData(elementFiles);
         getElement().addEventListener("upload-error", uploadsFinishedListener)
-                .addEventData("element.files");
-    }
-
-    public Registration addUploadsFinishedListener(
-            ComponentEventListener<UploadsFinishedEvent> listener) {
-        return addListener(UploadsFinishedEvent.class, listener);
+                .addEventData(elementFiles);
     }
 
     /**
@@ -111,9 +107,14 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
      *            receiver that handles the upload
      */
     public Upload(Receiver receiver) {
-        this();
+      this();
 
-        setReceiver(receiver);
+      setReceiver(receiver);
+    }
+
+    public Registration addUploadsFinishedListener(
+            ComponentEventListener<UploadsFinishedEvent> listener) {
+        return addListener(UploadsFinishedEvent.class, listener);
     }
 
     private StreamVariable getStreamVariable() {
