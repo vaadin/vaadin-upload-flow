@@ -55,7 +55,6 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
     private int activeUploads = 0;
     private boolean uploading;
 
-    private static final String I18N_PROPERTY = "i18n";
     private UploadI18N i18n;
 
     /**
@@ -84,13 +83,13 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
         DomEventListener uploadsFinishedListener = e -> {
             JsonArray files = e.getEventData().getArray("element.files");
 
-            boolean uploading = IntStream.range(0, files.length()).anyMatch(
+            boolean isUploading = IntStream.range(0, files.length()).anyMatch(
                     index -> files.getObject(index).getBoolean("uploading"));
 
-            if (this.uploading && !uploading) {
+            if (this.uploading && !isUploading) {
                 this.fireUploadsFinish();
             }
-            this.uploading = uploading;
+            this.uploading = isUploading;
         };
 
         addUploadStartListener(e -> this.uploading = true);
