@@ -17,6 +17,7 @@ package com.vaadin.flow.component.upload.demo;
 
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.html.Paragraph;
+import java.nio.charset.StandardCharsets;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
@@ -266,13 +267,7 @@ public class UploadView extends DemoView {
     private Component createComponent(String mimeType, String fileName,
             InputStream stream) {
         if (mimeType.startsWith("text")) {
-            String text = "";
-            try {
-                text = IOUtils.toString(stream, "UTF-8");
-            } catch (IOException e) {
-                text = "exception reading stream";
-            }
-            return new Text(text);
+          return createTextComponent(stream);
         } else if (mimeType.startsWith("image")) {
             Image image = new Image();
             try {
@@ -309,7 +304,17 @@ public class UploadView extends DemoView {
 
     }
 
-    private void showOutput(String text, Component content,
+  private Component createTextComponent(InputStream stream) {
+    String text;
+    try {
+        text = IOUtils.toString(stream, StandardCharsets.UTF_8);
+    } catch (IOException e) {
+        text = "exception reading stream";
+    }
+    return new Text(text);
+  }
+
+  private void showOutput(String text, Component content,
             HasComponents outputContainer) {
         HtmlComponent p = new HtmlComponent(Tag.P);
         p.getElement().setText(text);
