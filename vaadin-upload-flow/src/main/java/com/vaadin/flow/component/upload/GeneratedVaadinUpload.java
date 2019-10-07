@@ -15,6 +15,7 @@
  */
 package com.vaadin.flow.component.upload;
 
+import elemental.json.JsonString;
 import javax.annotation.Generated;
 
 import com.vaadin.flow.component.Component;
@@ -806,12 +807,12 @@ public abstract class GeneratedVaadinUpload<R extends GeneratedVaadinUpload<R>>
             extends ComponentEvent<R> {
         private final JsonObject detail;
         private final JsonObject detailFile;
-        private final JsonObject detailError;
+        private final JsonString detailError;
 
         public FileRejectEvent(R source, boolean fromClient,
                 @EventData("event.detail") JsonObject detail,
                 @EventData("event.detail.file") JsonObject detailFile,
-                @EventData("event.detail.error") JsonObject detailError) {
+                @EventData("event.detail.error") JsonString detailError) {
             super(source, fromClient);
             this.detail = detail;
             this.detailFile = detailFile;
@@ -826,7 +827,7 @@ public abstract class GeneratedVaadinUpload<R extends GeneratedVaadinUpload<R>>
             return detailFile;
         }
 
-        public JsonObject getDetailError() {
+        public JsonString getDetailError() {
             return detailError;
         }
     }
