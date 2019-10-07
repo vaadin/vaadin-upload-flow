@@ -112,6 +112,13 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
       setReceiver(receiver);
     }
 
+    /**
+     * Add a finished listener that is informed on upload finished.
+     *
+     * @param listener
+     *            the listener
+     * @return a {@link Registration} for removing the event listener
+     */
     public Registration addUploadsFinishedListener(
             ComponentEventListener<UploadsFinishedEvent> listener) {
         return addListener(UploadsFinishedEvent.class, listener);
