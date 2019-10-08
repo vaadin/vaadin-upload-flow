@@ -386,39 +386,39 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
         return activeUploads > 0;
     }
 
-    private void fireStarted(String filename, String MIMEType,
+    private void fireStarted(String filename, String mimeType,
             long contentLength) {
-        fireEvent(new StartedEvent(this, filename, MIMEType, contentLength));
+        fireEvent(new StartedEvent(this, filename, mimeType, contentLength));
     }
 
-    private void fireUploadInterrupted(String filename, String MIMEType,
+    private void fireUploadInterrupted(String filename, String mimeType,
             long length) {
-        fireEvent(new FailedEvent(this, filename, MIMEType, length));
+        fireEvent(new FailedEvent(this, filename, mimeType, length));
     }
 
-    private void fireNoInputStream(String filename, String MIMEType,
+    private void fireNoInputStream(String filename, String mimeType,
             long length) {
-        fireEvent(new NoInputStreamEvent(this, filename, MIMEType, length));
+        fireEvent(new NoInputStreamEvent(this, filename, mimeType, length));
     }
 
-    private void fireNoOutputStream(String filename, String MIMEType,
+    private void fireNoOutputStream(String filename, String mimeType,
             long length) {
-        fireEvent(new NoOutputStreamEvent(this, filename, MIMEType, length));
+        fireEvent(new NoOutputStreamEvent(this, filename, mimeType, length));
     }
 
-    private void fireUploadInterrupted(String filename, String MIMEType,
+    private void fireUploadInterrupted(String filename, String mimeType,
             long length, Exception e) {
-        fireEvent(new FailedEvent(this, filename, MIMEType, length, e));
+        fireEvent(new FailedEvent(this, filename, mimeType, length, e));
     }
 
-    private void fireUploadSuccess(String filename, String MIMEType,
+    private void fireUploadSuccess(String filename, String mimeType,
             long length) {
-        fireEvent(new SucceededEvent(this, filename, MIMEType, length));
+        fireEvent(new SucceededEvent(this, filename, mimeType, length));
     }
 
-    private void fireUploadFinish(String filename, String MIMEType,
+    private void fireUploadFinish(String filename, String mimeType,
             long length) {
-        fireEvent(new FinishedEvent(this, filename, MIMEType, length));
+        fireEvent(new FinishedEvent(this, filename, mimeType, length));
     }
 
     private void fireUploadsFinish() {
