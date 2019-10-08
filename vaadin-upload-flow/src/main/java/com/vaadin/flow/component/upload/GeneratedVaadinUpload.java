@@ -807,12 +807,12 @@ public abstract class GeneratedVaadinUpload<R extends GeneratedVaadinUpload<R>>
             extends ComponentEvent<R> {
         private final JsonObject detail;
         private final JsonObject detailFile;
-        private final JsonString detailError;
+        private final String detailError;
 
         public FileRejectEvent(R source, boolean fromClient,
                 @EventData("event.detail") JsonObject detail,
                 @EventData("event.detail.file") JsonObject detailFile,
-                @EventData("event.detail.error") JsonString detailError) {
+                @EventData("event.detail.error") String detailError) {
             super(source, fromClient);
             this.detail = detail;
             this.detailFile = detailFile;
@@ -827,7 +827,7 @@ public abstract class GeneratedVaadinUpload<R extends GeneratedVaadinUpload<R>>
             return detailFile;
         }
 
-        public JsonString getDetailError() {
+        public String getDetailError() {
             return detailError;
         }
     }

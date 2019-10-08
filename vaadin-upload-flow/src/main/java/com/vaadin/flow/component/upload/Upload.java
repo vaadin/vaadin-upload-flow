@@ -75,7 +75,7 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
         addUploadSuccessListener(event -> {
         });
 
-        addFileRejectListener(event -> fireEvent(new FileRejectedEvent(this, event.getDetailError().getString())));
+        addFileRejectListener(event -> fireEvent(new FileRejectedEvent(this, event.getDetailError())));
 
         // If client aborts upload mark upload as interrupted on server also
         addUploadAbortListener(event -> interruptUpload());
