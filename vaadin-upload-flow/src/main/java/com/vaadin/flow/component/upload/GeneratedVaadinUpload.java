@@ -15,7 +15,6 @@
  */
 package com.vaadin.flow.component.upload;
 
-import elemental.json.JsonString;
 import javax.annotation.Generated;
 
 import com.vaadin.flow.component.Component;
