@@ -71,8 +71,11 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
         // Get a server round trip for upload error and success.
         addUploadErrorListener(event -> {
         });
+
         addUploadSuccessListener(event -> {
         });
+
+        addFileRejectListener(event -> fireEvent(new FileRejectedEvent(this, event.getDetailError().getString())));
 
         // If client aborts upload mark upload as interrupted on server also
         addUploadAbortListener(event -> interruptUpload());
@@ -504,8 +507,8 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
      * @return a {@link Registration} for removing the event listener
      */
     public Registration addFileRejectedListener(
-            ComponentEventListener<FileRejectEvent<Upload>> listener) {
-        return addFileRejectListener(listener);
+            ComponentEventListener<FileRejectedEvent> listener) {
+        return addListener(FileRejectedEvent.class, listener);
     }
 
     /**

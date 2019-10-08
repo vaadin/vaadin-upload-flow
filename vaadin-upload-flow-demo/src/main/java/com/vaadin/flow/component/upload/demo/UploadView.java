@@ -107,7 +107,7 @@ public class UploadView extends DemoView {
 
         upload.addFileRejectedListener(event -> {
             Paragraph component = new Paragraph();
-            showOutput(event.getDetail().toString(), component, output);
+            showOutput(event.getErrorMessage(), component, output);
         });
         // end-source-example
         //@formatter:on
