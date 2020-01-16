@@ -559,9 +559,8 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
                 JsonObject i18nObject = (JsonObject) JsonSerializer
                         .toJson(this.i18n);
                 for (String key : i18nObject.keys()) {
-                    ui.getPage().executeJavaScript(
-                            "$0.set('i18n." + key + "', $1)", getElement(),
-                            i18nObject.get(key));
+                    ui.getPage().executeJs("$0.set('i18n." + key + "', $1)",
+                            getElement(), i18nObject.get(key));
                 }
             }
         });
@@ -644,7 +643,7 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
             if (upload.getReceiver() == null) {
                 throw new IllegalStateException(
                         "Upload cannot be performed without a receiver set. "
-                            + "Please firstly set the receiver implementation with upload.setReceiver");
+                                + "Please firstly set the receiver implementation with upload.setReceiver");
             }
             StreamVariable.StreamingStartEvent event = lastStartedEvent.pop();
             OutputStream receiveUpload = upload.getReceiver()
