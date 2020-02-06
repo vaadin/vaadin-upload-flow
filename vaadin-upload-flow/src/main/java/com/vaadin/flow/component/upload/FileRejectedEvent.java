@@ -18,32 +18,64 @@ package com.vaadin.flow.component.upload;
 import com.vaadin.flow.component.ComponentEvent;
 
 /**
- * Sent when the file selected for upload doesn't meet the constraints specified on {@link Upload}
+ * Sent when the file selected for upload doesn't meet the constraints specified
+ * on {@link Upload}
  *
  * @author Vaadin Ltd.
  */
 public class FileRejectedEvent extends ComponentEvent<Upload> {
 
-  private String errorMessage;
+    private String filename;
 
-  /**
-   * Creates a new event using the given source and indicator whether the
-   * event originated from the client side or the server side.
-   *
-   * @param source       the source component
-   * @param errorMessage the error message
-   */
-  public FileRejectedEvent(Upload source, String errorMessage) {
-    super(source, true);
-    this.errorMessage = errorMessage;
-  }
+    private String type;
 
-  /**
-   * Get the error message
-   *
-   * @return errorMessage
-   */
-  public String getErrorMessage() {
-    return errorMessage;
-  }
+    private String errorMessage;
+
+    /**
+     * Creates a new event using the given source and indicator whether the
+     * event originated from the client side or the server side.
+     *
+     * @param source
+     *            the source component
+     * @param filename
+     *            the file name
+     * @param type
+     *            the file type
+     * @param errorMessage
+     *            the error message
+     */
+    public FileRejectedEvent(Upload source, String filename, String type,
+            String errorMessage) {
+        super(source, true);
+        this.filename = filename;
+        this.type = type;
+        this.errorMessage = errorMessage;
+    }
+
+    /**
+     * Get the file name.
+     *
+     * @return the file name
+     */
+    public String getFileName() {
+        return filename;
+    }
+
+    /**
+     * Get the MIME type of the file.
+     *
+     * @return the MIME type
+     */
+    public String getMIMEType() {
+        return type;
+    }
+
+    /**
+     * Get the error message
+     *
+     * @return errorMessage
+     */
+    public String getErrorMessage() {
+        return errorMessage;
+    }
 }

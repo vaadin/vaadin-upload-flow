@@ -25,6 +25,16 @@ import com.vaadin.flow.component.ComponentEvent;
 public class ProgressUpdateEvent extends ComponentEvent<Upload> {
 
     /**
+     * The file name.
+     */
+    private final String filename;
+
+    /**
+     * The file type.
+     */
+    private final String type;
+
+    /**
      * Bytes transferred.
      */
     private final long readBytes;
@@ -39,14 +49,20 @@ public class ProgressUpdateEvent extends ComponentEvent<Upload> {
      *
      * @param source
      *            the source of the file
+     * @param filename
+     *            the file name
+     * @param type
+     *            the file type
      * @param readBytes
      *            bytes transferred
      * @param contentLength
      *            total size of file currently being uploaded, -1 if unknown
      */
-    public ProgressUpdateEvent(Upload source, long readBytes,
-            long contentLength) {
+    public ProgressUpdateEvent(Upload source, String filename, String type,
+            long readBytes, long contentLength) {
         super(source, false);
+        this.filename = filename;
+        this.type = type;
         this.readBytes = readBytes;
         this.contentLength = contentLength;
     }
@@ -58,6 +74,24 @@ public class ProgressUpdateEvent extends ComponentEvent<Upload> {
      */
     public Upload getUpload() {
         return getSource();
+    }
+
+    /**
+     * Get the file name.
+     *
+     * @return the file name
+     */
+    public String getFileName() {
+        return filename;
+    }
+
+    /**
+     * Get the MIME type of the file.
+     *
+     * @return the MIME type
+     */
+    public String getMIMEType() {
+        return type;
     }
 
     /**

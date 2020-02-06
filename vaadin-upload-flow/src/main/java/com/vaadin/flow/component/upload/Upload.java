@@ -76,7 +76,10 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
         });
 
         addFileRejectListener(event -> fireEvent(
-                new FileRejectedEvent(this, event.getDetailError())));
+                new FileRejectedEvent(this,
+                        event.getDetailFile().getString("name"),
+                        event.getDetailFile().getString("type"),
+                        event.getDetailError())));
 
         // If client aborts upload mark upload as interrupted on server also
         addUploadAbortListener(event -> interruptUpload());
@@ -432,13 +435,19 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
     /**
      * Emit the progress event.
      *
+     * @param filename
+     *            the file name
+     * @param mimeType
+     *            the file type
      * @param totalBytes
      *            bytes received so far
      * @param contentLength
      *            actual size of the file being uploaded, if known
      */
-    protected void fireUpdateProgress(long totalBytes, long contentLength) {
-        fireEvent(new ProgressUpdateEvent(this, totalBytes, contentLength));
+    protected void fireUpdateProgress(String filename, String mimeType,
+            long totalBytes, long contentLength) {
+        fireEvent(new ProgressUpdateEvent(this, filename, mimeType, totalBytes,
+                contentLength));
     }
 
     /**
@@ -630,8 +639,8 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
 
         @Override
         public void onProgress(StreamVariable.StreamingProgressEvent event) {
-            upload.fireUpdateProgress(event.getBytesReceived(),
-                    event.getContentLength());
+            upload.fireUpdateProgress(event.getFileName(), event.getMimeType(),
+                    event.getBytesReceived(), event.getContentLength());
         }
 
         @Override
