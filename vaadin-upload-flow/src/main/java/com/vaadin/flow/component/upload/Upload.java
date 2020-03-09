@@ -268,7 +268,7 @@ public class Upload extends GeneratedVaadinUpload<Upload> implements HasSize {
      *
      * @param uploadButton
      *            the component to be clicked by the user to open the dialog,
-     *            or <code>null</code> to clear it
+     *            or <code>null</code> to use vaadin-button as the actionable button
      */
     public void setUploadButton(Component uploadButton) {
         removeElementsAtSlot("add-button");
