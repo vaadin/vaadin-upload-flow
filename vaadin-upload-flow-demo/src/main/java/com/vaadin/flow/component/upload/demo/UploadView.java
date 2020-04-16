@@ -66,6 +66,9 @@ public class UploadView extends DemoView {
         changeDefaultComponents();
         i18nSampleUpload();
         createUploadWithFileConstraints();
+
+        addCard("Helper methods",
+                new Label("These methods are used in the examples above"));
     }
 
     private void createSimpleUpload() {
@@ -264,10 +267,12 @@ public class UploadView extends DemoView {
         addCard("i18n translations example", upload, output);
     }
 
+    // begin-source-example
+    // source-example-heading: Helper methods
     private Component createComponent(String mimeType, String fileName,
             InputStream stream) {
         if (mimeType.startsWith("text")) {
-          return createTextComponent(stream);
+            return createTextComponent(stream);
         } else if (mimeType.startsWith("image")) {
             Image image = new Image();
             try {
@@ -321,4 +326,5 @@ public class UploadView extends DemoView {
         outputContainer.add(p);
         outputContainer.add(content);
     }
+    // end-source-example
 }
