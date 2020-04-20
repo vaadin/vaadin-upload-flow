@@ -15,22 +15,6 @@
  */
 package com.vaadin.flow.component.upload.demo;
 
-import com.vaadin.flow.component.html.Label;
-import com.vaadin.flow.component.html.Paragraph;
-import java.nio.charset.StandardCharsets;
-import javax.imageio.ImageIO;
-import javax.imageio.ImageReader;
-import javax.imageio.stream.ImageInputStream;
-
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Iterator;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import org.apache.commons.io.IOUtils;
-
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.HtmlComponent;
@@ -38,7 +22,9 @@ import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.html.NativeButton;
+import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.upload.Upload;
 import com.vaadin.flow.component.upload.UploadI18N;
@@ -48,6 +34,18 @@ import com.vaadin.flow.demo.DemoView;
 import com.vaadin.flow.internal.MessageDigestUtil;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.StreamResource;
+import org.apache.commons.io.IOUtils;
+
+import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.Iterator;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * View for {@link Upload} demo.
@@ -117,7 +115,8 @@ public class UploadView extends DemoView {
         upload.setId("test-upload");
         output.setId("test-output");
 
-        addCard("Simple single file upload showing messages when file rejected", upload, output);
+        addCard("Simple single file upload showing messages when file rejected",
+                upload, output);
     }
 
     private void createSimpleMultiFileUpload() {
@@ -309,17 +308,17 @@ public class UploadView extends DemoView {
 
     }
 
-  private Component createTextComponent(InputStream stream) {
-    String text;
-    try {
-        text = IOUtils.toString(stream, StandardCharsets.UTF_8);
-    } catch (IOException e) {
-        text = "exception reading stream";
+    private Component createTextComponent(InputStream stream) {
+        String text;
+        try {
+            text = IOUtils.toString(stream, StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            text = "exception reading stream";
+        }
+        return new Text(text);
     }
-    return new Text(text);
-  }
 
-  private void showOutput(String text, Component content,
+    private void showOutput(String text, Component content,
             HasComponents outputContainer) {
         HtmlComponent p = new HtmlComponent(Tag.P);
         p.getElement().setText(text);
