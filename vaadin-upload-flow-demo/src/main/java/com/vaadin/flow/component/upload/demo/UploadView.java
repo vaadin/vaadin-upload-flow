@@ -15,6 +15,10 @@
  */
 package com.vaadin.flow.component.upload.demo;
 
+import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,10 +26,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import javax.imageio.ImageIO;
-import javax.imageio.ImageReader;
-import javax.imageio.stream.ImageInputStream;
 
 import org.apache.commons.io.IOUtils;
 
