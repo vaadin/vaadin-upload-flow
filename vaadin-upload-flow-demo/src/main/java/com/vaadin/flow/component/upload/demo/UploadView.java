@@ -85,6 +85,8 @@ public class UploadView extends DemoView {
                     event.getFileName(), buffer.getInputStream());
             showOutput(event.getFileName(), component, output);
         });
+
+        add(upload, output);
         // end-source-example
         //@formatter:on
         upload.setMaxFileSize(500 * 1024);
@@ -112,6 +114,8 @@ public class UploadView extends DemoView {
             Paragraph component = new Paragraph();
             showOutput(event.getErrorMessage(), component, output);
         });
+
+        add(upload, output);
         // end-source-example
         //@formatter:on
         upload.setId("test-upload");
@@ -136,6 +140,8 @@ public class UploadView extends DemoView {
                     buffer.getInputStream(event.getFileName()));
             showOutput(event.getFileName(), component, output);
         });
+
+        add(upload, output);
         // end-source-example
         //@formatter:on
         upload.setMaxFileSize(200 * 1024);
@@ -159,6 +165,8 @@ public class UploadView extends DemoView {
                     buffer.getInputStream(event.getFileName()));
             showOutput(event.getFileName(), component, output);
         });
+
+        add(upload, output);
         // end-source-example
         upload.setMaxFileSize(200 * 1024);
 
@@ -180,6 +188,8 @@ public class UploadView extends DemoView {
                     buffer.getInputStream(event.getFileName()));
             showOutput(event.getFileName(), component, output);
         });
+
+        add(upload, output);
         // end-source-example
         upload.setMaxFileSize(200 * 1024);
 
@@ -209,6 +219,8 @@ public class UploadView extends DemoView {
                     buffer.getInputStream(event.getFileName()));
             showOutput(event.getFileName(), component, output);
         });
+
+        add(upload, output);
         // end-source-example
         upload.setMaxFileSize(200 * 1024);
 
@@ -262,6 +274,8 @@ public class UploadView extends DemoView {
                         .collect(Collectors.toList()));
 
         upload.setI18n(i18n);
+
+        add(upload, output);
         // end-source-example
         upload.setMaxFileSize(200 * 1024);
 
