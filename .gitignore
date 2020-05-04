@@ -12,11 +12,12 @@ target/
 .project
 .settings
 .classpath
+error-screenshots
 
 # The following files are generated/updated by flow-maven-plugin
 package*.json
+pnpm-lock.yaml
 webpack.*.js
-error-screenshots
 tsconfig.json
 types.d.ts
 node_modules/
