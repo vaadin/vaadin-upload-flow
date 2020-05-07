@@ -72,13 +72,12 @@ public class UploadView extends DemoView {
     }
 
     private void createSimpleUpload() {
-        Div output = new Div();
-
         //@formatter:off
         // begin-source-example
         // source-example-heading: Simple in memory receiver for single file upload
         MemoryBuffer buffer = new MemoryBuffer();
         Upload upload = new Upload(buffer);
+        Div output = new Div();
 
         upload.addSucceededListener(event -> {
             Component component = createComponent(event.getMIMEType(),
@@ -98,8 +97,6 @@ public class UploadView extends DemoView {
     }
 
     private void createUploadWithFileConstraints() {
-        Div output = new Div();
-
         //@formatter:off
         // begin-source-example
         // source-example-heading: Simple single file upload showing messages when file rejected
@@ -109,6 +106,7 @@ public class UploadView extends DemoView {
         upload.setDropLabel(new Label("Upload a 300 bytes file in .csv format"));
         upload.setAcceptedFileTypes("text/csv");
         upload.setMaxFileSize(300);
+        Div output = new Div();
 
         upload.addFileRejectedListener(event -> {
             Paragraph component = new Paragraph();
@@ -126,13 +124,12 @@ public class UploadView extends DemoView {
     }
 
     private void createSimpleMultiFileUpload() {
-        Div output = new Div();
-
         //@formatter:off
         // begin-source-example
         // source-example-heading: Simple in memory receiver for multi file upload
         MultiFileMemoryBuffer buffer = new MultiFileMemoryBuffer();
         Upload upload = new Upload(buffer);
+        Div output = new Div();
 
         upload.addSucceededListener(event -> {
             Component component = createComponent(event.getMIMEType(),
@@ -151,13 +148,12 @@ public class UploadView extends DemoView {
     }
 
     private void createFilteredMultiFileUpload() {
-        Div output = new Div();
-
         // begin-source-example
         // source-example-heading: Filtered multi file upload for images
         MultiFileMemoryBuffer buffer = new MultiFileMemoryBuffer();
         Upload upload = new Upload(buffer);
         upload.setAcceptedFileTypes("image/jpeg", "image/png", "image/gif");
+        Div output = new Div();
 
         upload.addSucceededListener(event -> {
             Component component = createComponent(event.getMIMEType(),
@@ -174,13 +170,12 @@ public class UploadView extends DemoView {
     }
 
     private void createNonImmediateUpload() {
-        Div output = new Div();
-
         // begin-source-example
         // source-example-heading: Non immediate upload
         MultiFileMemoryBuffer buffer = new MultiFileMemoryBuffer();
         Upload upload = new Upload(buffer);
         upload.setAutoUpload(false);
+        Div output = new Div();
 
         upload.addSucceededListener(event -> {
             Component component = createComponent(event.getMIMEType(),
@@ -197,8 +192,6 @@ public class UploadView extends DemoView {
     }
 
     private void changeDefaultComponents() {
-        Div output = new Div();
-
         // begin-source-example
         // source-example-heading: Custom components upload demo
         MultiFileMemoryBuffer buffer = new MultiFileMemoryBuffer();
@@ -212,6 +205,7 @@ public class UploadView extends DemoView {
 
         Span dropIcon = new Span("¸¸.•*¨*•♫♪");
         upload.setDropLabelIcon(dropIcon);
+        Div output = new Div();
 
         upload.addSucceededListener(event -> {
             Component component = createComponent(event.getMIMEType(),
@@ -228,13 +222,12 @@ public class UploadView extends DemoView {
     }
 
     private void i18nSampleUpload() {
-        Div output = new Div();
-
         // begin-source-example
         // source-example-heading: i18n translations example
         MemoryBuffer buffer = new MemoryBuffer();
         Upload upload = new Upload(buffer);
         upload.setId("i18n-upload");
+        Div output = new Div();
 
         upload.addSucceededListener(event -> {
             Component component = createComponent(event.getMIMEType(),
