@@ -12,11 +12,11 @@
 
     <artifactId>vaadin-upload-flow</artifactId>
     <packaging>jar</packaging>
-    
+
     <name>Vaadin Upload</name>
 
     <dependencies>
-            <dependency>
+        <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>3.1.0</version>
