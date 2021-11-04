@@ -12,7 +12,9 @@ public class UploadSerializableTest extends ClassesSerializableTest {
     protected Stream<String> getExcludedPatterns() {
 
         return Stream.concat(super.getExcludedPatterns(),
-                Stream.of("com\\.vaadin\\.flow\\.component\\.upload\\.Upload")//TODO Fix serialization
+                Stream.of("com\\.vaadin\\.flow\\.component\\.upload\\.Upload",
+                        "com\\.vaadin\\.flow\\.component\\.upload\\.receivers\\.TempDirectory",
+                        "com\\.vaadin\\.flow\\.component\\.upload\\.receivers\\.TempDirectory\\$LazyHolder")
         );
     }
 
