@@ -29,6 +29,9 @@ public final class TempDirectory {
      */
     private static class LazyHolder {
         static final TempDirectory INSTANCE = new TempDirectory();
+
+        private LazyHolder() {
+        }
     }
 
     public static Path getPath() {
