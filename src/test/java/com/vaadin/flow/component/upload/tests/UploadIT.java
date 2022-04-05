@@ -32,6 +32,7 @@ import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.remote.LocalFileDetector;
 import org.openqa.selenium.remote.RemoteWebElement;
 
+import com.vaadin.testbench.TestBenchElement;
 import com.vaadin.flow.demo.ComponentDemoTest;
 
 import static org.junit.Assert.assertThat;
@@ -88,9 +89,8 @@ public class UploadIT extends ComponentDemoTest {
         open();
         waitUntil(driver -> getUpload().isDisplayed());
 
-        WebElement upload = findElement(By.id("i18n-upload"));
-        WebElement dropLabel = findInShadowRoot(upload, By.id("dropLabel"))
-                .get(0);
+        TestBenchElement upload = $(TestBenchElement.class).id("i18n-upload");
+        TestBenchElement dropLabel = upload.$("*").id("dropLabel");
         Assert.assertEquals("Перетащите файл сюда...", dropLabel.getText());
     }
 
@@ -119,8 +119,8 @@ public class UploadIT extends ComponentDemoTest {
         input.sendKeys(tempFileName);
     }
 
-    private WebElement getUpload() {
-        return getDriver().findElement(By.id("test-upload"));
+    private TestBenchElement getUpload() {
+        return $(TestBenchElement.class).id("test-upload");
     }
 
     /**
@@ -129,8 +129,8 @@ public class UploadIT extends ComponentDemoTest {
      *
      * @return actual upload button
      */
-    private WebElement getInput() {
-        return getInShadowRoot(getUpload(), By.id("fileInput"));
+    private TestBenchElement getInput() {
+        return getUpload().$("*").id("fileInput");
     }
 
     private void setLocalFileDetector(WebElement element) throws Exception {
